@@ -89,29 +89,50 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 				<div class="elementor-element elementor-element-90e9541 elementor-widget elementor-widget-wpforms" data-id="90e9541" data-element_type="widget" data-widget_type="wpforms.default">
 				<div class="elementor-widget-container">
 			
-			<form class="form22" action="send.php" method="post"autocomplete="off">
-          
-            <div class="form-group">
-              <label for="exampleInputEmail1"><b>Full Name :</label>
-              <input type="text" name="uname" placeholder="Name" size="30" required class="form-control" id="name">
-            </div>
-            </n><div class="form-group">
-              <label for="exampleInputEmail1"><b>Phone Number :</label>
-              <input type="text"pattern= "[0-9]+" name="phone" placeholder="Phone Number" size="30" required class="form-control" id="phone">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Email address :</label>
-              <input type="email" name="email" class="form-control" required id="email" placeholder="Email" size="30">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Enter your Printer Model Number :</label>
-              <input type="text" name="key" placeholder=" Model Number" size="30" required class="form-control" id="key" >
-            </div>
-           
-            <div class="form-group">
-               <button type="submit" id="download-button"  class="download-button"><b>Download Now</button>
-            </div>
-          </form></div>  <!-- .wpforms-container -->		</div>
+			<form class="form22" id="dataForm" autocomplete="off">
+  <div class="form-group">
+    <label><b>Full Name :</b></label>
+    <input type="text" name="uname" placeholder="Name" required class="form-control" id="name">
+  </div>
+
+  <div class="form-group">
+    <label><b>Phone Number :</b></label>
+    <input type="text" pattern="[0-9]+" name="phone" placeholder="Phone Number" required class="form-control" id="phone">
+  </div>
+
+  <div class="form-group">
+    <label>Email address :</label>
+    <input type="email" name="email" class="form-control" required id="email" placeholder="Email">
+  </div>
+
+  <div class="form-group">
+    <label>Enter your Printer Model Number :</label>
+    <input type="text" name="key" placeholder="Model Number" required class="form-control" id="key">
+  </div>
+
+  <div class="form-group">
+    <button type="submit" id="download-button" class="download-button"><b>Download Now</b></button>
+  </div>
+</form>
+
+<script>
+  const scriptURL = "YOUR_GOOGLE_SCRIPT_WEB_APP_URL"; // replace with your Google Apps Script Web App link
+  const form = document.getElementById("dataForm");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    fetch(scriptURL, {
+      method: "POST",
+      body: new FormData(form),
+    })
+    .then(() => {
+      window.location.href = "../loading/index.html"; // redirect after successful submission
+    })
+    .catch((error) => console.error("Error!", error.message));
+  });
+</script>
+</div>  <!-- .wpforms-container -->		</div>
 				</div>
 				<div class="elementor-element elementor-element-0114940 elementor-widget elementor-widget-text-editor" data-id="0114940" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
